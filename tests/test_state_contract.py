@@ -1,0 +1,8 @@
+from flux_style_lora.manifests import read_json, write_json_atomic
+
+
+def test_atomic_manifest_round_trip(tmp_path) -> None:
+    path = tmp_path / "manifest.json"
+    payload = {"training_kind": "style_lora", "trigger_word": "mystyle"}
+    write_json_atomic(path, payload)
+    assert read_json(path) == payload
